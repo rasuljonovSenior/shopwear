@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+<html lang="uz">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BekStyle - Zamonaviy Fashion</title>
+    <meta
+      name="description"
+      content="Zamonaviy va sifatli kiyimlar - BekStyle fashion do'koni"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+      <div class="loading-content">
+        <div class="loading-spinner">
+          <img
+            src="https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=compress&cs=tinysrgb&w=50"
+            alt="BekStyle Logo"
+            class="loading-logo"
+          />
+        </div>
+        <h2>BekStyle</h2>
+        <p>Yuklanmoqda...</p>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <div class="nav-logo">
+          <h1>BekStyle</h1>
+        </div>
+
+        <div class="nav-menu" id="navMenu">
+          <a href="#home" class="nav-link">Bosh sahifa</a>
+          <a href="#products" class="nav-link">Mahsulotlar</a>
+          <a href="#trends" class="nav-link">Trendlar</a>
+          <a href="#about" class="nav-link">Biz haqimizda</a>
+          <a href="#contact" class="nav-link">Aloqa</a>
+        </div>
+
+        <div class="nav-actions">
+          <button class="search-btn" onclick="toggleSearch()" title="Qidiruv">
+            <i class="fas fa-search"></i>
+          </button>
+          <button
+            class="theme-toggle"
+            onclick="toggleTheme()"
+            title="Tungi/Kunduzgi rejim"
+          >
+            <i class="fas fa-moon"></i>
+          </button>
+          <button
+            class="admin-btn"
+            onclick="openAdmin()"
+            title="Admin Panel"
+            style="display: inline-flex"
+          >
+            <i class="fas fa-cog"></i>
+          </button>
+          <button
+            class="wishlist-btn"
+            onclick="toggleWishlist()"
+            title="Sevimlilar"
+          >
+            <i class="fas fa-heart"></i>
+            <span class="wishlist-count">0</span>
+          </button>
+          <button class="cart-btn" onclick="toggleCart()" title="Savatcha">
+            <i class="fas fa-shopping-bag"></i>
+            <span class="cart-count">0</span>
+          </button>
+          <button class="hamburger" id="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span class="title-line">Zamonaviy</span>
+          <span class="title-line gradient-text">Fashion</span>
+        </h1>
+        <p class="hero-subtitle">
+          Eng so'nggi trendlar va sifatli kiyimlar bilan tanishing
+        </p>
+        <div class="hero-actions">
+          <button class="cta-btn primary" onclick="scrollToProducts()">
+            <i class="fas fa-shopping-bag"></i>
+            Mahsulotlarni ko'rish
+          </button>
+          <button class="cta-btn secondary" onclick="openAR()">
+            <i class="fas fa-cube"></i>
+            AR sinab ko'rish
+          </button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img
+          src="https://images.pexels.com/photos/1926769/pexels-photo-1926769.jpeg?auto=compress&cs=tinysrgb&w=800"
+          alt="Zamonaviy fashion kiyimlar"
+          loading="lazy"
+        />
+      </div>
+    </section>
+
+    <!-- News Slider -->
+    <section class="news-section">
+      <div class="container">
+        <h2 class="section-title">Yangiliklar</h2>
+        <div class="news-slider" id="newsSlider">
+          <div class="news-slide active">
+            <img
+              src="https://images.pexels.com/photos/1040945/pexels-photo-1040945.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Bahor kolleksiyasi yangiliklari"
+              loading="lazy"
+            />
+            <div class="slide-content">
+              <h3>Bahor kolleksiyasi</h3>
+              <p>Yangi bahor kolleksiyamiz bilan tanishing</p>
+            </div>
+          </div>
+          <div class="news-slide">
+            <img
+              src="https://images.pexels.com/photos/1536619/pexels-photo-1536619.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Yoz trendlari yangiliklari"
+              loading="lazy"
+            />
+            <div class="slide-content">
+              <h3>Yoz trendlari</h3>
+              <p>Bu yozning eng mashhur uslublari</p>
+            </div>
+          </div>
+          <div class="news-slide">
+            <img
+              src="https://images.pexels.com/photos/1043474/pexels-photo-1043474.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="Aksessuarlar yangiliklari"
+              loading="lazy"
+            />
+            <div class="slide-content">
+              <h3>Aksessuarlar</h3>
+              <p>Yangi aksessuarlar kolleksiyasi</p>
+            </div>
+          </div>
+        </div>
+        <div class="slider-controls">
+          <button
+            class="slider-btn pause"
+            onclick="pauseSlider()"
+            title="Pauza"
+          >
+            <i class="fas fa-pause"></i>
+          </button>
+          <button
+            class="slider-btn prev"
+            onclick="changeSlide(-1)"
+            title="Oldingi"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button
+            class="slider-btn next"
+            onclick="changeSlide(1)"
+            title="Keyingi"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Trends Section -->
+    <section id="trends" class="trends-section">
+      <div class="container">
+        <h2 class="section-title">Trendlar</h2>
+        <div class="trends-grid" id="trendsGrid">
+          <!-- Trends will be loaded dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="products-section">
+      <div class="container">
+        <div class="products-header">
+          <h2 class="section-title">Mahsulotlar</h2>
+          <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">
+              Barchasi
+            </button>
+            <button class="filter-btn" data-filter="kiyim">Kiyimlar</button>
+            <button class="filter-btn" data-filter="aksessuarlar">
+              Aksessuarlar
+            </button>
+            <button class="filter-btn" data-filter="yangi">
+              Yangi kelganlar
+            </button>
+          </div>
+        </div>
+
+        <div class="filters-panel">
+          <div class="price-filter">
+            <label>Narx oralig'i:</label>
+            <div class="price-range">
+              <input type="range" id="minPrice" min="0" max="1000" value="0" />
+              <input
+                type="range"
+                id="maxPrice"
+                min="0"
+                max="1000"
+                value="1000"
+              />
+              <div class="price-display">
+                <span id="minPriceDisplay">0</span> -
+                <span id="maxPriceDisplay">1000</span> ming so'm
+              </div>
+            </div>
+          </div>
+
+          <div class="color-filter">
+            <label>Ranglar:</label>
+            <div class="color-options">
+              <button
+                class="color-option"
+                data-color="all"
+                title="Barcha ranglar"
+                style="
+                  background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1);
+                "
+              ></button>
+              <button
+                class="color-option"
+                data-color="qora"
+                title="Qora"
+                style="background: #000"
+              ></button>
+              <button
+                class="color-option"
+                data-color="oq"
+                title="Oq"
+                style="background: #fff; border: 1px solid #ddd"
+              ></button>
+              <button
+                class="color-option"
+                data-color="qizil"
+                title="Qizil"
+                style="background: #ff6b6b"
+              ></button>
+              <button
+                class="color-option"
+                data-color="ko'k"
+                title="Ko'k"
+                style="background: #4ecdc4"
+              ></button>
+              <button
+                class="color-option"
+                data-color="yashil"
+                title="Yashil"
+                style="background: #10b981"
+              ></button>
+              <button
+                class="color-option"
+                data-color="sariq"
+                title="Sariq"
+                style="background: #f59e0b"
+              ></button>
+              <button
+                class="color-option"
+                data-color="binafsha"
+                title="Binafsha"
+                style="background: #8b5cf6"
+              ></button>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="clear-filters-btn" onclick="clearFilters()">
+              <i class="fas fa-times"></i>
+              Tozalash
+            </button>
+          </div>
+        </div>
+
+        <div class="products-count">
+          <span id="productsCount">0</span> ta mahsulot topildi
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+          <!-- Products will be loaded dynamically -->
+        </div>
+
+        <div class="pagination" id="pagination">
+          <!-- Pagination will be loaded dynamically -->
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+      <div class="container">
+        <div class="about-content">
+          <div class="about-text">
+            <h2 class="section-title">Biz haqimizda</h2>
+            <p>
+              BekStyle - bu zamonaviy va sifatli kiyimlar dunyosi. Biz har bir
+              mijozimizga eng yaxshi xizmat ko'rsatishga intilamiz va eng
+              so'nggi fashion trendlarini taqdim etamiz.
+            </p>
+            <p>
+              Bizning maqsadimiz - har bir inson o'zini chiroyli va ishonchli
+              his qilishi uchun eng mos kiyimlarni topishga yordam berish.
+            </p>
+            <div class="about-stats">
+              <div class="stat stat-customers">
+                <h3>1000+</h3>
+                <p>Mamnun mijozlar</p>
+              </div>
+              <div class="stat stat-products">
+                <h3>500+</h3>
+                <p>Mahsulotlar</p>
+              </div>
+              <div class="stat stat-brands">
+                <h3>50+</h3>
+                <p>Brendlar</p>
+              </div>
+            </div>
+          </div>
+          <div class="about-image">
+            <img
+              src="https://images.pexels.com/photos/1884581/pexels-photo-1884581.jpeg?auto=compress&cs=tinysrgb&w=600"
+              alt="BekStyle jamoasi"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <h2 class="section-title">Aloqa</h2>
+        <div class="contact-content">
+          <div class="contact-info">
+            <div class="contact-item">
+              <i class="fas fa-map-marker-alt"></i>
+              <div>
+                <h4>Manzil</h4>
+                <p>Toshkent, O'zbekiston</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-phone"></i>
+              <div>
+                <h4>Telefon</h4>
+                <p>+998 90 123 45 67</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="fas fa-envelope"></i>
+              <div>
+                <h4>Email</h4>
+                <p>info@bekstyle.uz</p>
+              </div>
+            </div>
+          </div>
+          <form class="contact-form" id="contactForm">
+            <input type="text" placeholder="Ismingiz" required />
+            <input type="email" placeholder="Email manzilingiz" required />
+            <textarea placeholder="Xabaringiz" rows="5" required></textarea>
+            <button type="submit" class="cta-btn primary contact-submit-btn">
+              <i class="fas fa-paper-plane"></i>
+              Yuborish
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3>BekStyle</h3>
+            <p>Zamonaviy fashion dunyosi</p>
+            <div class="social-links">
+              <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="#" title="Telegram"><i class="fab fa-telegram"></i></a>
+              <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+          <div class="footer-section">
+            <h4>Tez havolalar</h4>
+            <ul>
+              <li><a href="#home">Bosh sahifa</a></li>
+              <li><a href="#products">Mahsulotlar</a></li>
+              <li><a href="#trends">Trendlar</a></li>
+              <li><a href="#about">Biz haqimizda</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Yordam</h4>
+            <ul>
+              <li><a href="#">Yetkazib berish</a></li>
+              <li><a href="#">Qaytarish</a></li>
+              <li><a href="#">Yordam markazi</a></li>
+              <li><a href="#contact">Aloqa</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h4>Yangiliklar</h4>
+            <p>Eng so'nggi yangiliklar va takliflardan xabardor bo'ling</p>
+            <form class="newsletter-form">
+              <input type="email" placeholder="Email manzilingiz" required />
+              <button type="submit" title="Obuna bo'lish">
+                <i class="fas fa-paper-plane"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2024 BekStyle. Barcha huquqlar himoyalangan.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+      <div class="search-container">
+        <div class="search-header">
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Mahsulotlarni qidiring..."
+            autocomplete="off"
+          />
+          <button class="close-search" onclick="toggleSearch()" title="Yopish">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="search-results" id="searchResults">
+          <div class="search-suggestions">
+            <h4>Mashhur qidiruvlar</h4>
+            <div class="suggestion-tags">
+              <span class="tag" onclick="searchFor('ko\'ylak')">Ko'ylak</span>
+              <span class="tag" onclick="searchFor('shim')">Shim</span>
+              <span class="tag" onclick="searchFor('aksessuarlar')"
+                >Aksessuarlar</span
+              >
+              <span class="tag" onclick="searchFor('yangi')">Yangi</span>
+              <span class="tag" onclick="searchFor('sport')">Sport</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h3>Savatcha</h3>
+        <button class="close-cart" onclick="toggleCart()" title="Yopish">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="cart-items" id="cartItems">
+        <div class="empty-cart">
+          <i class="fas fa-shopping-bag"></i>
+          <p>Savatchangiz bo'sh</p>
+          <button
+            class="cta-btn secondary"
+            onclick="scrollToProducts(); toggleCart(false);"
+          >
+            Mahsulotlar bo'limiga o'ting
+          </button>
+        </div>
+      </div>
+      <div class="cart-footer">
+        <div class="cart-total">Jami: <span id="cartTotal">0 so'm</span></div>
+        <button class="checkout-btn" onclick="checkout()">
+          <i class="fas fa-credit-card"></i>
+          Buyurtma berish
+        </button>
+      </div>
+    </div>
+
+    <!-- Wishlist Sidebar -->
+    <div
+      class="wishlist-overlay"
+      id="wishlistOverlay"
+      onclick="toggleWishlist()"
+    ></div>
+    <div class="wishlist-sidebar" id="wishlistSidebar">
+      <div class="wishlist-header">
+        <h3>Sevimlilar</h3>
+        <button
+          class="close-wishlist"
+          onclick="toggleWishlist()"
+          title="Yopish"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="wishlist-items" id="wishlistItems">
+        <div class="empty-wishlist">
+          <i class="fas fa-heart"></i>
+          <p>Sevimlilar ro'yxati bo'sh</p>
+          <button
+            class="cta-btn secondary"
+            onclick="scrollToProducts(); toggleWishlist(false);"
+          >
+            Mahsulotlar bo'limiga o'ting
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div class="product-modal" id="productModal">
+      <div class="modal-overlay" onclick="closeProductModal()"></div>
+      <div class="modal-content">
+        <button
+          class="close-modal"
+          onclick="closeProductModal()"
+          title="Yopish"
+        >
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="modal-body">
+          <div class="product-gallery">
+            <div class="main-image">
+              <img id="modalMainImage" src="" alt="" />
+              <div class="image-controls">
+                <button
+                  class="zoom-btn"
+                  onclick="zoomImage()"
+                  title="Kattalashtirish"
+                >
+                  <i class="fas fa-search-plus"></i>
+                </button>
+                <button
+                  class="ar-btn"
+                  onclick="tryAR()"
+                  title="AR sinab ko'rish"
+                >
+                  <i class="fas fa-cube"></i>
+                </button>
+              </div>
+            </div>
+            <div class="thumbnail-gallery" id="thumbnailGallery">
+              <!-- Thumbnails will be loaded dynamically -->
+            </div>
+          </div>
+          <div class="product-details">
+            <div class="product-badges" id="modalProductBadges">
+              <!-- Badges will be loaded dynamically -->
+            </div>
+            <h2 id="modalProductTitle"></h2>
+            <div class="product-price">
+              <span id="modalProductPrice"></span>
+              <span id="modalProductOldPrice" class="old-price"></span>
+            </div>
+            <div class="product-description-container">
+              <div
+                class="product-description-header"
+                onclick="toggleDescription()"
+              >
+                <h4>Mahsulot haqida</h4>
+                <i class="fas fa-chevron-down"></i>
+              </div>
+              <div
+                class="product-description-content"
+                id="modalProductDescription"
+              >
+                <!-- Description will be loaded dynamically -->
+              </div>
+            </div>
+
+            <div class="product-options">
+              <div class="color-selector">
+                <h4>Rang:</h4>
+                <div class="color-options" id="modalColorOptions">
+                  <!-- Colors will be loaded dynamically -->
+                </div>
+              </div>
+              <div class="size-selector">
+                <h4>O'lcham:</h4>
+                <div class="size-options" id="modalSizeOptions">
+                  <!-- Sizes will be loaded dynamically -->
+                </div>
+              </div>
+            </div>
+
+            <div class="product-actions">
+              <button class="add-to-cart-btn" onclick="addToCart()">
+                <i class="fas fa-shopping-bag"></i>
+                Savatchaga qo'shish
+              </button>
+              <button class="quick-buy-btn" onclick="quickBuy()">
+                <i class="fas fa-bolt"></i>
+                Tez buyurtma
+              </button>
+              <button
+                class="wishlist-btn"
+                onclick="addToWishlist()"
+                title="Sevimlilarga qo'shish"
+              >
+                <i class="fas fa-heart"></i>
+              </button>
+            </div>
+
+            <div class="product-tabs">
+              <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="description">
+                  Tavsif
+                </button>
+                <button class="tab-btn" data-tab="reviews">Sharhlar</button>
+                <button class="tab-btn" data-tab="delivery">
+                  Yetkazib berish
+                </button>
+                <button class="tab-btn" data-tab="similar">O'xshash</button>
+              </div>
+              <div class="tab-content">
+                <div class="tab-panel active" id="description">
+                  <p>Mahsulot haqida batafsil ma'lumot...</p>
+                </div>
+                <div class="tab-panel" id="reviews">
+                  <div class="reviews-list" id="reviewsList">
+                    <!-- Reviews will be loaded dynamically -->
+                  </div>
+                  <div class="add-review">
+                    <h4>Sharh qoldiring</h4>
+                    <form class="review-form" id="reviewForm">
+                      <input type="text" placeholder="Ismingiz" required />
+                      <div class="rating-input">
+                        <label>Baho:</label>
+                        <div class="stars">
+                          <i class="far fa-star" data-rating="1"></i>
+                          <i class="far fa-star" data-rating="2"></i>
+                          <i class="far fa-star" data-rating="3"></i>
+                          <i class="far fa-star" data-rating="4"></i>
+                          <i class="far fa-star" data-rating="5"></i>
+                        </div>
+                      </div>
+                      <textarea placeholder="Sharhingiz" required></textarea>
+                      <button type="submit" class="cta-btn primary">
+                        Yuborish
+                      </button>
+                    </form>
+                  </div>
+                </div>
+                <div class="tab-panel" id="delivery">
+                  <div class="delivery-info">
+                    <h4>Yetkazib berish ma'lumotlari</h4>
+                    <ul>
+                      <li>
+                        <i class="fas fa-truck"></i> Toshkent bo'ylab - 1-2 kun
+                      </li>
+                      <li>
+                        <i class="fas fa-shipping-fast"></i> Viloyatlarga - 3-5
+                        kun
+                      </li>
+                      <li>
+                        <i class="fas fa-money-bill-wave"></i> 300,000 so'mdan
+                        yuqori - bepul
+                      </li>
+                      <li>
+                        <i class="fas fa-undo"></i> 14 kun ichida qaytarish
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="tab-panel" id="similar">
+                  <div class="similar-products" id="similarProducts">
+                    <!-- Similar products will be loaded dynamically -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="order-modal" id="orderModal">
+      <div class="modal-overlay" onclick="closeOrderModal()"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Buyurtma berish</h3>
+          <button
+            class="close-modal"
+            onclick="closeOrderModal()"
+            title="Yopish"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form class="order-form" id="orderForm">
+          <div class="form-group">
+            <label>Ism va familiya *</label>
+            <input type="text" name="fullName" required />
+          </div>
+          <div class="form-group">
+            <label>Telefon raqami *</label>
+            <input
+              type="tel"
+              name="phone"
+              placeholder="+998 90 123 45 67"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label>Email manzili</label>
+            <input type="email" name="email" />
+          </div>
+          <div class="form-group">
+            <label>Yetkazib berish manzili *</label>
+            <textarea name="address" rows="3" required></textarea>
+          </div>
+          <div class="form-group">
+            <label>Izoh</label>
+            <textarea name="comment" rows="2"></textarea>
+          </div>
+          <div class="order-summary">
+            <h4>Buyurtma tafsilotlari</h4>
+            <div id="orderItems"></div>
+            <div class="order-total">
+              <strong>Jami: <span id="orderTotal">0 so'm</span></strong>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button
+              type="button"
+              onclick="closeOrderModal()"
+              class="cta-btn secondary"
+            >
+              Bekor qilish
+            </button>
+            <button type="submit" class="cta-btn primary">
+              <i class="fas fa-check"></i>
+              Buyurtmani tasdiqlash
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- AR Modal -->
+    <div class="ar-modal" id="arModal">
+      <div class="ar-overlay" onclick="closeAR()"></div>
+      <div class="ar-content">
+        <button class="close-ar" onclick="closeAR()" title="Yopish">
+          <i class="fas fa-times"></i>
+        </button>
+        <div class="ar-camera">
+          <video id="arVideo" autoplay></video>
+          <div class="ar-instructions">
+            <p>Kamerani mahsulotga qarating va sinab ko'ring</p>
+          </div>
+          <div class="ar-controls">
+            <button
+              class="ar-capture"
+              onclick="captureAR()"
+              title="Surat olish"
+            >
+              <i class="fas fa-camera"></i>
+              Surat olish
+            </button>
+            <button
+              class="ar-switch"
+              onclick="switchCamera()"
+              title="Kamerani almashtirish"
+            >
+              <i class="fas fa-sync-alt"></i>
+              Kamera
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+      <div class="notification-content">
+        <i class="notification-icon"></i>
+        <span class="notification-message"></span>
+      </div>
+    </div>
+
+    <!-- Back to Top -->
+    <button
+      class="back-to-top"
+      id="backToTop"
+      onclick="scrollToTop()"
+      title="Yuqoriga"
+    >
+      <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <!-- Admin Panel (Hidden by default) -->
+    <div class="admin-panel" id="adminPanel" style="display: none">
+      <div class="admin-header">
+        <h2>Admin Panel</h2>
+        <button class="close-admin" onclick="closeAdmin()" title="Yopish">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="admin-content">
+        <div class="admin-tabs">
+          <button class="admin-tab-btn active" data-tab="products">
+            Mahsulotlar
+          </button>
+          <button class="admin-tab-btn" data-tab="orders">Buyurtmalar</button>
+          <button class="admin-tab-btn" data-tab="users">
+            Foydalanuvchilar
+          </button>
+          <button class="admin-tab-btn" data-tab="settings">Sozlamalar</button>
+        </div>
+        <div class="admin-tab-content">
+          <div class="admin-tab-panel active" id="admin-products">
+            <div class="admin-actions">
+              <button class="add-product-btn" onclick="showAddProductForm()">
+                <i class="fas fa-plus"></i>
+                Yangi mahsulot
+              </button>
+            </div>
+            <div class="products-table" id="adminProductsTable">
+              <!-- Products table will be loaded dynamically -->
+            </div>
+          </div>
+          <div class="admin-tab-panel" id="admin-orders">
+            <div class="orders-table" id="adminOrdersTable">
+              <!-- Orders table will be loaded dynamically -->
+            </div>
+          </div>
+          <div class="admin-tab-panel" id="admin-users">
+            <div class="users-table" id="adminUsersTable">
+              <!-- Users table will be loaded dynamically -->
+            </div>
+          </div>
+          <div class="admin-tab-panel" id="admin-settings">
+            <div class="settings-form">
+              <h3>Sayt sozlamalari</h3>
+              <form id="settingsForm">
+                <div class="form-group">
+                  <label>Sayt nomi:</label>
+                  <input type="text" id="siteName" value="BekStyle" />
+                </div>
+                <div class="form-group">
+                  <label>Asosiy rang:</label>
+                  <input type="color" id="primaryColor" value="#6366f1" />
+                </div>
+                <button type="submit" class="save-settings-btn">
+                  <i class="fas fa-save"></i>
+                  Saqlash
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Product Modal -->
+    <div class="add-product-modal" id="addProductModal">
+      <div class="modal-overlay" onclick="closeAddProductForm()"></div>
+      <div class="modal-content">
+        <div class="modal-header">
+          <h3>Yangi mahsulot qo'shish</h3>
+          <button
+            class="close-modal"
+            onclick="closeAddProductForm()"
+            title="Yopish"
+          >
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <form class="add-product-form" id="addProductForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Nomi *:</label>
+              <input type="text" name="name" required />
+            </div>
+            <div class="form-group">
+              <label>Narxi (so'm) *:</label>
+              <input type="number" name="price" required />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Tavsifi *:</label>
+            <textarea name="description" rows="4" required></textarea>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Kategoriya *:</label>
+              <select name="category" required>
+                <option value="">Kategoriyani tanlang</option>
+                <option value="kiyim">Kiyimlar</option>
+                <option value="aksessuarlar">Aksessuarlar</option>
+                <option value="yangi">Yangi kelganlar</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Badge:</label>
+              <select name="badge">
+                <option value="">Badge yo'q</option>
+                <option value="Yangi">Yangi</option>
+                <option value="Chegirma">Chegirma</option>
+                <option value="Mashhur">Mashhur</option>
+                <option value="Limited">Limited</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Rasmlar (maksimal 5 ta):</label>
+            <input type="file" name="images" multiple accept="image/*" />
+            <div class="image-preview" id="imagePreview"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Ranglar:</label>
+              <div class="color-inputs">
+                <input type="color" name="colors" value="#000000" />
+                <input type="color" name="colors" value="#ffffff" />
+                <input type="color" name="colors" value="#ff6b6b" />
+                <button
+                  type="button"
+                  onclick="addColorInput()"
+                  title="Rang qo'shish"
+                >
+                  <i class="fas fa-plus"></i>
+                </button>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>O'lchamlar:</label>
+              <div class="size-checkboxes">
+                <label
+                  ><input type="checkbox" name="sizes" value="XS" />
+                  <i class="fas fa-tshirt"></i> XS</label
+                >
+                <label
+                  ><input type="checkbox" name="sizes" value="S" />
+                  <i class="fas fa-tshirt"></i> S</label
+                >
+                <label
+                  ><input type="checkbox" name="sizes" value="M" />
+                  <i class="fas fa-tshirt"></i> M</label
+                >
+                <label
+                  ><input type="checkbox" name="sizes" value="L" />
+                  <i class="fas fa-tshirt"></i> L</label
+                >
+                <label
+                  ><input type="checkbox" name="sizes" value="XL" />
+                  <i class="fas fa-tshirt"></i> XL</label
+                >
+              </div>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button type="button" onclick="closeAddProductForm()">
+              Bekor qilish
+            </button>
+            <button type="submit">
+              <i class="fas fa-save"></i>
+              Saqlash
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
