@@ -1773,7 +1773,7 @@ function loadFromStorage() {
     const newProducts = customProducts.filter(
       (p) => !existingIds.includes(p.id)
     );
-    products = [...sampleProducts, ...newProducts];
+    products = [...sampleProducts, ...newProducts]; 
     filteredProducts = [...products];
     displayProducts();
     updateProductsCount();
