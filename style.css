@@ -3074,6 +3074,11 @@ body.dark-mode {
     --font-size-2xl: 1.25rem;
   }
 
+  .hero-png{
+    width: 150px;
+    height: 150px;
+  }
+
   .hero-title {
     font-size: var(--font-size-3xl);
   }
