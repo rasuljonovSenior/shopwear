@@ -15,8 +15,6 @@ let currentPage = 1
 const productsPerPage = 12
 let filteredProducts = []
 
-const API_URL = "https://json-api.uz/api/project/bekstyle"
-
 // Sample Products Data
 const sampleProducts = [
   {
@@ -628,27 +626,11 @@ function setupScrollEffects() {
 }
 
 function loadProducts() {
-  fetch(`${API_URL}/products`)
-    .then((response) => {
-      if (!response.ok) throw new Error("API error")
-      return response.json()
-    })
-    .then((data) => {
-      products = data.products || sampleProducts
-      filteredProducts = [...products]
-      displayProducts()
-      displayTrends(products.slice(0, 6))
-      updateProductsCount()
-    })
-    .catch((error) => {
-      console.log("[v0] API dan mahsulotlarni yuklashda xato:", error)
-      // Fallback to sample products
-      products = [...sampleProducts]
-      filteredProducts = [...products]
-      displayProducts()
-      displayTrends(products.slice(0, 6))
-      updateProductsCount()
-    })
+  products = [...sampleProducts]
+  filteredProducts = [...products]
+  displayProducts()
+  displayTrends(products.slice(0, 6))
+  updateProductsCount()
 }
 
 function displayProducts() {
@@ -1314,51 +1296,25 @@ function handleOrderSubmit(e) {
     date: new Date().toLocaleDateString("uz-UZ"),
   }
 
-  fetch(`${API_URL}/orders`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(orderData),
-  })
-    .then((response) => {
-      if (!response.ok) throw new Error("API error")
-      return response.json()
-    })
-    .then((data) => {
-      // Add to orders
-      orders.push(orderData)
+  // Add to orders
+  orders.push(orderData)
 
-      // Clear cart
-      cart = []
-      updateCartDisplay()
-      updateCartCount()
+  // Clear cart
+  cart = []
+  updateCartDisplay()
+  updateCartCount()
 
-      // Close modals
-      closeOrderModal()
-      toggleCart(false)
+  // Close modals
+  closeOrderModal()
+  toggleCart(false)
 
-      // Save to storage (backup)
-      saveToStorage()
+  // Save to storage
+  saveToStorage()
 
-      showNotification("Buyurtma muvaffaqiyatli berildi! Tez orada aloqaga chiqamiz.", "success")
+  showNotification("Buyurtma muvaffaqiyatli berildi! Tez orada aloqaga chiqamiz.", "success")
 
-      // Reset form
-      e.target.reset()
-    })
-    .catch((error) => {
-      console.log("[v0] Buyurtmani API'ga yuklashda xato:", error)
-      // Fallback: saqlash localStorage'da
-      orders.push(orderData)
-      cart = []
-      updateCartDisplay()
-      updateCartCount()
-      closeOrderModal()
-      toggleCart(false)
-      saveToStorage()
-      showNotification("Buyurtma muvaffaqiyatli berildi! Tez orada aloqaga chiqamiz.", "success")
-      e.target.reset()
-    })
+  // Reset form
+  e.target.reset()
 }
 
 // Wishlist Functions
@@ -1680,21 +1636,24 @@ function loadFromStorage() {
     updateWishlistUI()
   }
 
-  fetch(`${API_URL}/orders`)
-    .then((response) => {
-      if (!response.ok) throw new Error("API error")
-      return response.json()
-    })
-    .then((data) => {
-      orders = data.orders || []
-    })
-    .catch((error) => {
-      console.log("[v0] API'dan buyurtmalarni yuklashda xato:", error)
-      const savedOrders = localStorage.getItem("bekstyle_orders")
-      if (savedOrders) {
-        orders = JSON.parse(savedOrders)
-      }
-    })
+  // Load orders
+  const savedOrders = localStorage.getItem("bekstyle_orders")
+  if (savedOrders) {
+    orders = JSON.parse(savedOrders)
+  }
+
+  // Load custom products
+  const savedProducts = localStorage.getItem("bekstyle_products")
+  if (savedProducts) {
+    const customProducts = JSON.parse(savedProducts)
+    // Merge with sample products, avoiding duplicates
+    const existingIds = sampleProducts.map((p) => p.id)
+    const newProducts = customProducts.filter((p) => !existingIds.includes(p.id))
+    products = [...sampleProducts, ...newProducts]
+    filteredProducts = [...products]
+    displayProducts()
+    updateProductsCount()
+  }
 }
 
 // Admin Functions
@@ -1714,61 +1673,21 @@ function promptAdminLogin() {
   const login = prompt("Admin login:")
   const password = prompt("Parol:")
 
-  if (!login || !password) {
-    showNotification("Login yoki parol to'ldirilmagan!", "error")
-    return
+  if (login === "bekstyle" && password === "admin123") {
+    isAdmin = true
+    localStorage.setItem(
+      "bekstyle_admin",
+      JSON.stringify({
+        login: "bekstyle",
+        timestamp: Date.now(),
+      }),
+    )
+    document.querySelector(".admin-btn").style.display = "flex"
+    showNotification("Admin panelga xush kelibsiz!", "success")
+    openAdmin()
+  } else {
+    showNotification("Noto'g'ri login yoki parol!", "error")
   }
-
-  fetch(`${API_URL}/auth`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      login: login,
-      password: password,
-    }),
-  })
-    .then((response) => {
-      if (!response.ok) throw new Error("Invalid credentials")
-      return response.json()
-    })
-    .then((data) => {
-      if (data.success || (data.login === login && data.authenticated)) {
-        isAdmin = true
-        localStorage.setItem(
-          "bekstyle_admin",
-          JSON.stringify({
-            login: login,
-            timestamp: Date.now(),
-          }),
-        )
-        document.querySelector(".admin-btn").style.display = "flex"
-        showNotification("Admin panelga xush kelibsiz!", "success")
-        openAdmin()
-      } else {
-        showNotification("Noto'g'ri login yoki parol!", "error")
-      }
-    })
-    .catch((error) => {
-      console.log("[v0] Admin autentifikatsiyada xato:", error)
-      // Fallback: hardcoded credentials (backup)
-      if (login === "bekstyle" && password === "admin123") {
-        isAdmin = true
-        localStorage.setItem(
-          "bekstyle_admin",
-          JSON.stringify({
-            login: login,
-            timestamp: Date.now(),
-          }),
-        )
-        document.querySelector(".admin-btn").style.display = "flex"
-        showNotification("Admin panelga xush kelibsiz!", "success")
-        openAdmin()
-      } else {
-        showNotification("Noto'g'ri login yoki parol!", "error")
-      }
-    })
 }
 
 function openAdmin() {
