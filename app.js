@@ -2191,3 +2191,28 @@ if ("serviceWorker" in navigator) {
 }
 
 console.log("🚀 BekStyle Fashion Store muvaffaqiyatli ishga tushdi!")
+
+// Notification System
+function showNotification(message, type = "info") {
+  const notification = document.getElementById("notification")
+  const icon = notification.querySelector(".notification-icon")
+  const messageEl = notification.querySelector(".notification-message")
+
+  // Set icon based on type
+  const icons = {
+    success: "fas fa-check-circle",
+    error: "fas fa-times-circle",
+    warning: "fas fa-exclamation-triangle",
+    info: "fas fa-info-circle",
+  }
+
+  icon.className = `notification-icon ${icons[type]}`
+  messageEl.textContent = message
+  notification.className = `notification ${type}`
+
+  notification.classList.add("show")
+
+  setTimeout(() => {
+    notification.classList.remove("show")
+  }, 3000)
+}

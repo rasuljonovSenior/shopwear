@@ -3514,3 +3514,73 @@ button::after {
   word-break: break-word;
   color: var(--text-secondary);
 }
+
+
+/* Notification */
+.notification {
+  position: fixed;
+  top: 80px;
+  right: 2rem;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.5rem;
+  box-shadow: var(--shadow-lg);
+  z-index: 5000;
+  transform: translateX(400px);
+  transition: transform var(--transition-slow);
+  min-width: 300px;
+}
+
+.notification.show {
+  transform: translateX(0);
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notification-icon {
+  font-size: var(--font-size-xl);
+  flex-shrink: 0;
+}
+
+.notification.success .notification-icon {
+  color: var(--success-color);
+}
+
+.notification.error .notification-icon {
+  color: var(--error-color);
+}
+
+.notification.warning .notification-icon {
+  color: var(--warning-color);
+}
+
+.notification.info .notification-icon {
+  color: var(--primary-color);
+}
+
+.notification-message {
+  font-weight: 500;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .notification {
+    top: auto;
+    bottom: 20px;
+    right: 1rem;
+    left: 1rem;
+    min-width: auto;
+    transform: translateY(150px);
+  }
+
+  .notification.show {
+    transform: translateY(0);
+  }
+}
