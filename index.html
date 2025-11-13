@@ -18,6 +18,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     />
     <link rel="shortcut icon" href="./img/asosi.png" type="image/x-icon">
+    <link rel="stylesheet" href="./normalize.css">
   </head>
   <body>
     <!-- Loading Screen -->
@@ -45,7 +46,7 @@
         <div class="nav-menu" id="navMenu">
           <a href="#home" class="nav-link">Bosh sahifa</a>
           <a href="#products" class="nav-link">Mahsulotlar</a>
-          <a href="#trends" class="nav-link">Trendlar</a>
+
           <a href="#about" class="nav-link">Biz haqimizda</a>
           <a href="#contact" class="nav-link">Aloqa</a>
         </div>
@@ -188,14 +189,7 @@
     </section>
 
     <!-- Trends Section -->
-    <section id="trends" class="trends-section">
-      <div class="container">
-        <h2 class="section-title">Trendlar</h2>
-        <div class="trends-grid" id="trendsGrid">
-          <!-- Trends will be loaded dynamically -->
-        </div>
-      </div>
-    </section>
+
 
     <!-- Products Section -->
     <section id="products" class="products-section">
@@ -410,6 +404,7 @@
           </div>
         </div>
         <div class="footer-bottom">
+           <p class="footer-hamid">Tomonidan yaratildi : <a href="https://www.instagram.com/rasuljonov_7/" class="hamid"> HAMIDULLOH</a></p>
           <p>&copy; 2024 BekStyle. Barcha huquqlar himoyalangan.</p>
         </div>
       </div>
@@ -569,7 +564,7 @@
             </div>
 
             <div class="product-options">
-              <div class="color-selector">
+              <div style="display: none;" class="color-selector">
                 <h4>Rang:</h4>
                 <div class="color-options" id="modalColorOptions">
                   <!-- Colors will be loaded dynamically -->
@@ -588,11 +583,9 @@
                 <i class="fas fa-shopping-bag"></i>
                 Savatchaga qo'shish
               </button>
-              <button class="quick-buy-btn" onclick="quickBuy()">
-                <i class="fas fa-bolt"></i>
-                Tez buyurtma
-              </button>
-              <button
+              
+              <button style="
+              display: none;"
                 class="wishlist-btn"
                 onclick="addToWishlist()"
                 title="Sevimlilarga qo'shish"
@@ -879,18 +872,7 @@
           <div class="form-row">
             <div class="form-group">
               <label>Ranglar:</label>
-              <div class="color-inputs">
-                <input type="color" name="colors" value="#000000" />
-                <input type="color" name="colors" value="#ffffff" />
-                <input type="color" name="colors" value="#ff6b6b" />
-                <button
-                  type="button"
-                  onclick="addColorInput()"
-                  title="Rang qo'shish"
-                >
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
+
             </div>
             <div class="form-group">
               <label>O'lchamlar:</label>

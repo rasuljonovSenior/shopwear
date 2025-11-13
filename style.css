@@ -1962,7 +1962,7 @@ body.dark-mode {
   background: transparent;
   color: var(--primary-color);
   border: 2px solid var(--primary-color);
-  padding: 1.25rem;
+  padding: 10.75rem;
   border-radius: var(--radius-lg);
   font-weight: 600;
   cursor: pointer;
@@ -2654,8 +2654,10 @@ body.dark-mode {
 .users-table {
   background: var(--bg-primary);
   border-radius: var(--radius-lg);
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: visible;
   box-shadow: var(--shadow-md);
+  -webkit-overflow-scrolling: touch;
 }
 
 .table-header {
@@ -2667,6 +2669,7 @@ body.dark-mode {
   grid-template-columns: 2fr 1fr 1fr 1fr 150px;
   gap: 1rem;
   font-size: var(--font-size-base);
+  min-width: 900px;
 }
 
 .table-row {
@@ -2677,6 +2680,7 @@ body.dark-mode {
   gap: 1rem;
   align-items: center;
   transition: background var(--transition-normal);
+  min-width: 900px;
 }
 
 .table-row:hover {
@@ -2686,6 +2690,7 @@ body.dark-mode {
 .table-actions {
   display: flex;
   gap: 0.75rem;
+  flex-shrink: 0;
 }
 
 .edit-btn,
@@ -2700,6 +2705,7 @@ body.dark-mode {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .edit-btn {
@@ -2720,6 +2726,34 @@ body.dark-mode {
 .delete-btn:hover {
   background: #dc2626;
   transform: scale(1.1);
+}
+
+/* Mobile responsive table adjustments for iPhone SE */
+@media (max-width: 640px) {
+  .table-header {
+    grid-template-columns: 2fr 1fr 1fr 1fr 140px;
+    min-width: 850px;
+    padding: 1rem;
+  }
+
+  .table-row {
+    grid-template-columns: 2fr 1fr 1fr 1fr 140px;
+    min-width: 850px;
+    padding: 1rem;
+  }
+
+  .products-table,
+  .orders-table,
+  .users-table {
+    border-radius: var(--radius-md);
+  }
+
+  .edit-btn,
+  .delete-btn {
+    width: 36px;
+    height: 36px;
+    padding: 0.5rem;
+  }
 }
 
 .settings-form {
@@ -3259,11 +3293,10 @@ body.dark-mode {
     white-space: nowrap;
     flex-shrink: 0;
   }
-  .social-links{
+  .social-links {
     display: flex;
     flex-direction: row;
   }
-
 }
 
 /* Print Styles */
