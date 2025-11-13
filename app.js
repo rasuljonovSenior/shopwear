@@ -2216,3 +2216,107 @@ function showNotification(message, type = "info") {
     notification.classList.remove("show")
   }, 3000)
 }
+
+// function updateCartCount() {
+//   const cart = JSON.parse(localStorage.getItem("cart")) || []
+//   const cartCountEl = document.querySelector(".cart-count")
+//   if (cartCountEl) {
+//     cartCountEl.textContent = cart.length
+//   }
+// }
+
+// function updateWishlistCount() {
+//   const wishlist = JSON.parse(localStorage.getItem("wishlist")) || []
+//   const wishlistCountEl = document.querySelector(".wishlist-count")
+//   if (wishlistCountEl) {
+//     wishlistCountEl.textContent = wishlist.length
+//   }
+// }
+
+// function addToCart(productId = null, quantity = 1) {
+//   const cart = JSON.parse(localStorage.getItem("cart")) || []
+
+//   if (productId === null) {
+//     const modal = document.getElementById("productModal")
+//     productId = modal.dataset.productId
+//   }
+
+//   const existingItem = cart.find((item) => item.id === productId)
+
+//   if (existingItem) {
+//     existingItem.quantity += quantity
+//   } else {
+//     cart.push({ id: productId, quantity })
+//   }
+
+//   localStorage.setItem("cart", JSON.stringify(cart))
+//   updateCartCount()
+//   showNotification("Mahsulot savatchaga qo'shildi!", "success")
+//   closeProductModal()
+// }
+
+// function addToWishlist(productId = null) {
+//   const wishlist = JSON.parse(localStorage.getItem("wishlist")) || []
+
+//   if (productId === null) {
+//     const modal = document.getElementById("productModal")
+//     productId = modal.dataset.productId
+//   }
+
+//   if (!wishlist.includes(productId)) {
+//     wishlist.push(productId)
+//     localStorage.setItem("wishlist", JSON.stringify(wishlist))
+//     updateWishlistCount()
+//     showNotification("Sevimlilar ro'yxatiga qo'shildi!", "success")
+//   } else {
+//     wishlist.splice(wishlist.indexOf(productId), 1)
+//     localStorage.setItem("wishlist", JSON.stringify(wishlist))
+//     updateWishlistCount()
+//     showNotification("Sevimlilardan o'chirildi!", "info")
+//   }
+// }
+
+// function checkout() {
+//   const orderForm = document.getElementById("orderForm")
+//   const orderModal = document.getElementById("orderModal")
+
+//   orderForm.addEventListener("submit", (e) => {
+//     e.preventDefault()
+
+//     const formData = new FormData(orderForm)
+//     const order = {
+//       id: Date.now(),
+//       fullName: formData.get("fullName"),
+//       phone: formData.get("phone"),
+//       email: formData.get("email"),
+//       address: formData.get("address"),
+//       comment: formData.get("comment"),
+//       items: JSON.parse(localStorage.getItem("cart")) || [],
+//       total: calculateCartTotal(),
+//       date: new Date().toISOString(),
+//     }
+
+//     const orders = JSON.parse(localStorage.getItem("orders")) || []
+//     orders.push(order)
+//     localStorage.setItem("orders", JSON.stringify(orders))
+
+//     localStorage.setItem("cart", JSON.stringify([]))
+//     updateCartCount()
+
+//     showNotification("Buyurtmangiz qabul qilindi! Tez orada biz siz bilan bog'lanamiz.", "success")
+//     closeOrderModal()
+//     orderForm.reset()
+//   })
+// }
+
+// function closeProductModal() {
+//   // Implementation for closing product modal
+// }
+
+// function calculateCartTotal() {
+//   // Implementation for calculating cart total
+// }
+
+// function closeOrderModal() {
+//   // Implementation for closing order modal
+// }
